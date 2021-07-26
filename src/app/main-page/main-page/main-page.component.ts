@@ -1,44 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+
+import { Book } from "../../models/book";
+import { BooksService } from "../../services/books.services";
+import { BookDatasource } from "../../services/book.datasource";
+import {ActivatedRoute} from "@angular/router";
+import {MatDialog, MatDialogConfig, MatDialogModule} from "@angular/material/dialog";
+import {BookDialogComponent} from "../../book-dialog/book-dialog/book-dialog.component";
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, AfterViewInit {
 
-  data: any;
+  book!: Book;
+  dataSource!: BookDatasource;
+  displayedColumns = ['title', 'description', 'pageCount', 'publishDate'];
 
-  constructor() {
+
+  constructor(private route: ActivatedRoute,
+              private bookService: BooksService,
+              private dialog: MatDialog) {
 
   }
-
-  displayedColumns!: string[];
-  dataSource: any;
 
   ngOnInit() {
-    // this.http.get('https://fakerestapi.azurewebsites.net/api/v1/Books')
-    //   .subscribe(res => {
-    //     if (res) {
-    //       // this.data = res;
-    //       console.log(res);
-    //       // this.dataSource = new MatTableDataSource([res]);
-    //       this.dataSource = res;
-    //       console.log(this.dataSource);
-          
-          
-    //     }
-    //   })
-    
-    // this.displayedColumns = ['title', 'description', 'pageCount', 'publishDate'];
-    // console.log(this.dataSource, '---');
-    // setTimeout(() => {
-    //   this.dataSource = new MatTableDataSource<any>(this.data);
-    // }, 0)
-    
+
+    this.book = this.route.snapshot.data['book'];
+    this.dataSource = new BookDatasource((this.bookService));
+    this.dataSource.loadBooks();
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    this.dialog.open(BookDialogComponent, dialogConfig)
 
   }
+
+  ngAfterViewInit() {
+  }
+
 
 
 }

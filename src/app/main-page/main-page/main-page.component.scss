@@ -1,8 +1,21 @@
-table {
+.mat-table {
     width: 100%;
 
-    td:hover {
-        color: #4c3be4;
-        cursor: pointer;
-    }
+  ng-container {
+    width: 100%;
+  }
+  .mat-cell:hover {
+    color: #4c3be4;
+    cursor: pointer;
+  }
+
+  .mat-row:hover {
+    background-color: #ffe6f3;
+  }
+
+  .mat-header-cell, .mat-cell {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
 }
