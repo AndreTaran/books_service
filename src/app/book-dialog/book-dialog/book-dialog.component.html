@@ -1,8 +1,23 @@
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
     <input matInput
-           placeholder="Book"
+           placeholder="Book title"
            formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Book description"
+           formControlName="description">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="page count"
+           formControlName="pageCount">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="publish date"
+           formControlName="publishDate">
   </mat-form-field>
 </mat-dialog-content>
 

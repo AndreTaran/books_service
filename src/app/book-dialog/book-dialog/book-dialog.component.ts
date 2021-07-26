@@ -9,7 +9,7 @@ import {Book} from "../../models/book";
   styleUrls: ['./book-dialog.component.scss']
 })
 export class BookDialogComponent implements OnInit {
-  form!: FormGroup;
+  form: FormGroup;
   title: string;
 
   constructor(
@@ -17,7 +17,7 @@ export class BookDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<BookDialogComponent>,
     @Inject(MAT_DIALOG_DATA) {title, description, pageCount, publishDate}:Book
   ) {
-    this.title = '';
+    this.title = title;
 
     this.form = this.fb.group({
       title: [title, Validators.required],

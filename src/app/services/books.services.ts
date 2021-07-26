@@ -18,6 +18,14 @@ export class BooksService {
             // )
     }
 
+    createBook(book: Book) {
+        return this.http.post('https://fakerestapi.azurewebsites.net/api/v1/Books', book);
+    }
+
+    updateBook(id: number, book: Book) {
+        return this.http.put(`https://fakerestapi.azurewebsites.net/api/v1/Books/${id}`, book);
+    }
+
 
 }
 

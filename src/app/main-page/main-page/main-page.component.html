@@ -3,17 +3,23 @@
     <mat-spinner></mat-spinner>
   </div>
 
+  <button (click)="openDialog()">add book</button>
+
   <mat-table [dataSource]="dataSource">
+
+
+
     <div *ngFor="let elem of displayedColumns">
       <ng-container matColumnDef="{{elem}}">
         <mat-header-cell *matHeaderCellDef>{{elem}}</mat-header-cell>
-        <mat-cell *matCellDef="let book">{{book[elem]}}</mat-cell>
+        <mat-cell *matCellDef="let book" (click)="editDialog(book)">{{book[elem]}}</mat-cell>
       </ng-container>
     </div>
 
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="editDialog(book)"></mat-row>
 
   </mat-table>
 </div>

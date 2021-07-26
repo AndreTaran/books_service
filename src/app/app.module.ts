@@ -13,7 +13,11 @@ import {BooksService} from "./services/books.services";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { BookDialogComponent } from "./book-dialog/book-dialog/book-dialog.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MatInputModule } from "@angular/material/input";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {NoopAnimationPlayer} from "@angular/animations";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -24,6 +28,7 @@ import { MatInput } from "@angular/material/input";
   ],
   imports: [
     BrowserModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     MatTableModule,
@@ -31,7 +36,10 @@ import { MatInput } from "@angular/material/input";
     MatProgressSpinnerModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInput
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPaginatorModule
   ],
   providers: [
     BooksService
